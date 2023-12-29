@@ -55,11 +55,17 @@ Changed data type from whole number to text and replaced values in the 'Senior C
 
 **Other measures that I utilised when analysing the dataset were:**
 #ChurnRate = COUNTROWS(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Churn] = "Yes")) / COUNTROWS('01 Churn-Dataset')
+
 #AvgTenureChurned = AVERAGEX(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Churn] = "Yes"), '01 Churn-Dataset'[Churn])
+
 #ChurnRatePaymentMethod = DIVIDE(CALCULATE(COUNTROWS(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Churn] = "Yes"))),CALCULATE(COUNTROWS('01 Churn-Dataset')),0)
+
 #AvgMonthlyChargesChurned = AVERAGEX(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Churn] = "Yes"), '01 Churn-Dataset'[Churn])
+
 #AdminTicketResolutionRate = DIVIDE(SUM('01 Churn-Dataset'[numAdminTickets]), COUNTROWS('01 Churn-Dataset'))
+
 #ChurnRateM2M = DIVIDE(CALCULATE(COUNTROWS(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Churn] = "Yes" && '01 Churn-Dataset'[Contract] = "Month-to-Month"))), CALCULATE(COUNTROWS(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Contract] = "Month-to-Month"))))
+
 #CountDevicePro = CALCULATE (COUNTA ('01 Churn-Dataset'[DeviceProtection]), '01 Churn-Dataset'[DeviceProtection] = "Yes" )
 
 
