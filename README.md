@@ -48,15 +48,19 @@ The Retentions Manager has provided some information, see below link.
 I utilised Power Query to conduct the following tasks:
 - Data type validation
 - Checking for 'nulls' within the data set.
-  - Within the dataset I identified 11 records in the 'TotalCharges' column that had null values.  I utilised the following formula to amend these values to those within the TotalCharges column.  My reasoning being that these 11 customers were new customers and did not have any other monthly charges.
-    = Table.ReplaceValue(#"Filtered Rows",null,each [MonthlyCharges],Replacer.ReplaceValue,{"TotalCharges"})
+  - Within the dataset I identified 11 records in the 'TotalCharges' column that had null values.  I created a custom column to replace the null values with the values from the monthly charges column with the assumption that these 11 customers were new customers and did not have any other monthly charges.
+    = Table.AddColumn(#"Replaced Value1", "Custom", each if [TotalCharges] = null then [MonthlyCharges] else [TotalCharges])
 
-Other measures that I utilised when analysing the dataset were:
+Changed data type from whole number to text and replaced values in the 'Senior Citizen' column from (0,1) to (Yes/No)
 
-
-
-
-
+**Other measures that I utilised when analysing the dataset were:**
+#ChurnRate = COUNTROWS(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Churn] = "Yes")) / COUNTROWS('01 Churn-Dataset')
+#AvgTenureChurned = AVERAGEX(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Churn] = "Yes"), '01 Churn-Dataset'[Churn])
+#ChurnRatePaymentMethod = DIVIDE(CALCULATE(COUNTROWS(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Churn] = "Yes"))),CALCULATE(COUNTROWS('01 Churn-Dataset')),0)
+#AvgMonthlyChargesChurned = AVERAGEX(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Churn] = "Yes"), '01 Churn-Dataset'[Churn])
+#AdminTicketResolutionRate = DIVIDE(SUM('01 Churn-Dataset'[numAdminTickets]), COUNTROWS('01 Churn-Dataset'))
+#ChurnRateM2M = DIVIDE(CALCULATE(COUNTROWS(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Churn] = "Yes" && '01 Churn-Dataset'[Contract] = "Month-to-Month"))), CALCULATE(COUNTROWS(FILTER('01 Churn-Dataset', '01 Churn-Dataset'[Contract] = "Month-to-Month"))))
+#CountDevicePro = CALCULATE (COUNTA ('01 Churn-Dataset'[DeviceProtection]), '01 Churn-Dataset'[DeviceProtection] = "Yes" )
 
 
   # PWC SWITZERLAND - Task 4
@@ -107,8 +111,6 @@ I utilised Power Query to conduct the following tasks:
   15. Hiring trend and hiring distribution by nationality
   16. Promotion and Turnover rate FY 21
 
-
-**Presentation and Analysis Phase:**
 
 
 
