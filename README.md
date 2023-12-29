@@ -93,7 +93,12 @@ Measuring and applying fair pay practices.
 I utilised Power Query to conduct the following tasks:
 
 - Data type validation
-- Checking for 'nulls' within the data set.
+- Checking for 'nulls' within the data set. replaced leaver year nulls with 'current', replaced job role after promotion nulls with 'no promotion'
+- replaced FTE group non full timers as part time.
+- replaced time in job level before promotion nulls to n/a
+- replaced fy19 perf rating nulls to 0 to reflect none yet undertaken
+- ABIVE ON PHARMA GROUP TABLE
+- 
 - Removal of columns that would not be used for my analysis
 
 
